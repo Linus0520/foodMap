@@ -7,8 +7,8 @@
   </div>
   <% for (let food of foods.reverse()){%>
   <div class="card rounded-0 border-bottom">
-    <div class="row">
-      <div class="col-md-4">
+    <div class="row cardContainer">
+      <div class="col-md-4 imgContainer">
         <%if(food.images.length) {%>
         <img class="img-fluid" alt="" src="<%=food.images[0].url%>" />
         <% }else {%>
