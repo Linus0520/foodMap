@@ -1,0 +1,93 @@
+<% layout('layouts/boilerplate')%>
+<div class="row mt-5">
+  <h1 class="text-center">New Iconic Food</h1>
+  <div class="col-md-6 offset-md-3">
+    <form
+      action="/foods"
+      method="POST"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="title">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          name="food[title]"
+          required
+        />
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Place of origin</label>
+        <input
+          class="form-control"
+          type="text"
+          id="location"
+          name="food[location]"
+          required
+        />
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+
+      <!-- <div class="mb-3">
+                <label class="form-label" for="image">Image Url</label>
+                <input class="form-control" type="text" id="image" name="food[image]" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div> -->
+      <div class="mb-3">
+        <label class="form-label" for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-text" id="price-label">$</span>
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            placeholder="0.00"
+            aria-label="price"
+            aria-describedby="price-label"
+            name="food[price]"
+            required
+          />
+        </div>
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="food[description]"
+          required
+        ></textarea>
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Add image(s)...</span>
+        <label class="form-control" for="image">
+          <!-- Choose image(s)... -->
+          <input type="file" id="image" name="image" multiple />
+        </label>
+      </div>
+
+      <div class="mb-3 row justify-content-between">
+        <a class="col-3 btn btn-secondary" href="/foods"> Back </a>
+        <button class="col-3 btn btn-success">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

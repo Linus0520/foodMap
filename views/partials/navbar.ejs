@@ -1,0 +1,40 @@
+<nav
+  class="navbar navbar-expand-lg sticky-top shadow bg-light"
+  data-bs-theme="white"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="/"
+      ><img src="../img/logo.png" class="img" alt="logo" />FoodMap</a
+    >
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav me-auto">
+        <!-- <a class="nav-link" href="/">Home</a> -->
+        <a class="nav-link" href="/foods">Global Iconic FoodMap</a>
+        <a class="nav-link" href="/foods/new">New Iconic Food</a>
+      </div>
+      <div class="navbar-nav">
+        <% if(!currentUser) {%>
+        <a class="nav-link" href="/login">Log in</a>
+        <a class="nav-link" href="/register">Sign up</a>
+        <% } else {%>
+
+        <a class="nav-link text-md-end" href="/logout">
+          <%=currentUser.username%>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i
+        ></a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

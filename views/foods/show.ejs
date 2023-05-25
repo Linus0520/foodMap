@@ -1,0 +1,146 @@
+<% layout('layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css" />
+
+<div class="row mb-5 mt-5">
+  <div class="col-md-6 .col-sm-12">
+    <div class="card mb-3 me-md-4 bg-body-tertiary sticky-top">
+      <div id="foodCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner card-img-top">
+          <% food.images.forEach((img, i) => { %>
+          <div class="carousel-item <%= i === 0 ? 'active' : ''%>">
+            <img src="<%= img.url%>" class="d-block w-100" alt="" />
+          </div>
+          <% }) %>
+        </div>
+        <% if(food.images.length > 1) {%>
+        <a
+          class="carousel-control-prev"
+          href="#foodCarousel"
+          role="button"
+          data-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a
+          class="carousel-control-next"
+          href="#foodCarousel"
+          role="button"
+          data-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <% } %>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title"><%= food.title%></h5>
+        <p class="card-text"><%= food.description%></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-body-tertiary">💰$<%= food.price%></li>
+      </ul>
+      <% if( currentUser && food.author.equals(currentUser._id)) {%>
+      <div class="card-body">
+        <a class="card-link btn btn-primary" href="/foods/<%=food._id%>/edit"
+          >Edit</a
+        >
+        <form
+          class="d-inline"
+          action="/foods/<%=food._id%>?_method=DELETE"
+          method="POST"
+        >
+          <button class="btn btn-danger">Delete</button>
+        </form>
+      </div>
+      <% } %>
+      <div class="card-footer text-muted">
+        Submitted by <%= food.author.username%>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 .col-sm-12">
+    <div class="p-3 bg-body-tertiary border rounded-3">
+      <h4>Place of Origin</h4>
+      <p class="list-group-item text-muted"><%= food.location%></p>
+      <div id="map"></div>
+    </div>
+    <% if(food.reviews.length>0){ %>
+    <div class="p-3 mt-3 mb-3 bg-body-tertiary border rounded-3">
+
+      <h4 class="mb-3">Restaurant recommendations</h4>
+ 
+      <% for(let review of food.reviews) { %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <h5 class="card-title"><%= review.title %></h5>
+          <p class="card-text">📍 <%= review.body %></p>
+          <p class="card-text">By:<%= review.author.username%></p>
+          <% if( currentUser && review.author.equals(currentUser._id)) {%>
+          <form
+            action="/foods/<%=food._id%>/reviews/<%=review._id%>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+          <% } %>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <%} %>
+    <% if(currentUser){ %>
+    <div class="p-3 mt-3 mb-3 bg-body-tertiary border rounded-3">
+      <h4 class="mb-3">Your go-to restaurant for this iconic food:</h4>
+      <div class="card">
+        <div class="card-body">
+          <form
+            action="/foods/<%=food._id%>/reviews"
+            method="POST"
+            class="mb-3 validated-form"
+            novalidate
+          >
+            <div class="mb-3">
+              <label class="form-label" for="title">🍽️ Restaurant name </label>
+              <input
+                class="form-control"
+                type="text"
+                id="title"
+                name="review[title]"
+                required
+              />
+              <label class="form-label" for="body">📍 Location </label>
+              <textarea
+                class="form-control"
+                name="review[body]"
+                id="body"
+                cols="30"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+            <button class="btn btn-success">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <% }else{%>
+      <div class="p-3  mt-3 bg-body-tertiary border rounded-3 text-center">
+        
+        <p class="list-group-item text-muted"> Recomment your go-to restaurant for this iconic food!</p>
+        <a href="/login" class="btn btn-primary px-5 " type="button"> Log in </a>
+      </div>
+
+    </div>
+
+    <%} %>
+  </div>
+
+  <script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const food = <%- JSON.stringify(food) %>
+  </script>
+
+  <script src="/javascripts/showPageMap.js"></script>
+</div>

@@ -1,0 +1,109 @@
+<% layout('layouts/boilerplate')%>
+<div class="row mt-5">
+  <h1 class="text-center">Edit Food</h1>
+  <div class="col-md-6 offset-md-3">
+    <form
+      action="/foods/<%=food._id%>?_method=PUT"
+      method="POST"
+      novalidate
+      class="validated-form"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label class="form-label" for="title">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          name="food[title]"
+          value="<%=food.title %>"
+          required
+        />
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="location">Place of origin</label>
+        <input
+          class="form-control"
+          type="text"
+          id="location"
+          name="food[location]"
+          value="<%=food.location %>"
+          required
+        />
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="price">Price</label>
+        <div class="input-group">
+          <span class="input-group-text" id="price-label">$</span>
+          <input
+            type="text"
+            class="form-control"
+            id="price"
+            placeholder="0.00"
+            aria-label="price"
+            aria-describedby="price-label"
+            name="food[price]"
+            value="<%=food.price %>"
+            required
+          />
+          <!-- <div class="valid-feedback">
+                        Looks good!
+                    </div> -->
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea
+          class="form-control"
+          type="text"
+          id="description"
+          name="food[description]"
+          required
+        >
+<%= food.description%></textarea
+        >
+        <!-- <div class="valid-feedback">
+                    Looks good!
+                </div> -->
+      </div>
+      <div class="mb-3">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Add more image(s)...</span>
+          <label class="form-control" for="image">
+            <input type="file" id="image" name="image" multiple />
+          </label>
+        </div>
+      </div>
+      <div class="mb-3">
+        <% food.images.forEach(function(img, i) { %>
+
+        <img src="<%=img.thumbnail %>" class="img-thumbnail" alt="" />
+        <div class="form-check-inline">
+          <input
+            type="checkbox"
+            id="image-<%=i%>"
+            name="deleteImages[]"
+            value="<%=img.filename%>"
+          />
+        </div>
+        <label for="image-<%=i%>">Delete</label>
+        <% })%>
+      </div>
+
+      <div class="mb-3 row justify-content-between">
+        <a class="col-3 btn btn-secondary" href="/foods/<%= food._id%>">
+          Back
+        </a>
+        <button class="col-3 btn btn-success">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
