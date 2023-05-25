@@ -4,6 +4,7 @@
 <div class="row mb-0 mt-5 mb-md-5">
   <div class="col-md-6 .col-sm-12">
     <div class="card shadow mb-5 mb-md-3 me-md-4 bg-body-tertiary sticky-top rounded-0 border-0">
+    
       <div id="foodCarousel" class="rounded-0 carousel slide" data-ride="carousel">
         <div class="carousel-inner card-img-top">
           <% food.images.forEach((img, i) => { %>
@@ -13,24 +14,18 @@
           <% }) %>
         </div>
         <% if(food.images.length > 1) {%>
-        <a
+        <button
           class="carousel-control-prev"
-          href="#foodCarousel"
-          role="button"
-          data-slide="prev"
+          type="button" data-bs-target="#foodCarousel" data-bs-slide="prev"
         >
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a
-          class="carousel-control-next"
-          href="#foodCarousel"
-          role="button"
-          data-slide="next"
-        >
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
+        <i class="fa-solid fa-circle-chevron-left fa-xl" style="color: #6b6e70;"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+        class="carousel-control-next" type="button" data-bs-target="#foodCarousel" data-bs-slide="next">
+        <i class="fa-solid fa-circle-chevron-right fa-xl" style="color: #6b6e70;"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
         <% } %>
       </div>
       <div class="card-body">

@@ -60,15 +60,21 @@ module.exports.updateFood = async (req, res) => {
     const food = await Food.findByIdAndUpdate(id, { ...req.body.food });
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     food.images.push(...imgs);
-    await food.save();
-    if (req.body.deleteImages) {
-        for (let filename of req.body.deleteImages) {
-            await cloudinary.uploader.destroy(filename);
+    if(req.body.deleteImages && food.images.length - req.body.deleteImages.length <1){
+        req.flash('error', 'At least one image is required');
+        res.redirect(`/foods/${food._id}/edit`)
+    }else{
+        await food.save();
+        if (req.body.deleteImages) {
+            for (let filename of req.body.deleteImages) {
+                await cloudinary.uploader.destroy(filename);
+            }
+            await food.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
         }
-        await food.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } })
+        req.flash('success', 'Successfully updated!');
+        res.redirect(`/foods/${food._id}`)
     }
-    req.flash('success', 'Successfully updated!');
-    res.redirect(`/foods/${food._id}`)
+    
 }
 
 module.exports.deleteFood = async (req, res) => {

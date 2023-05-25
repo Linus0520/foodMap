@@ -15,7 +15,7 @@
         <img
           class="img-fluid"
           alt=""
-          src="https://res.cloudinary.com/douqbebwk/image/upload/v1600103881/FoodMap/1.png"
+          src="https://res.cloudinary.com/dhntiebd5/image/upload/v1684980431/logo_uwixyl.png"
         />
         <% } %>
       </div>
@@ -26,6 +26,7 @@
           <p class="card-text">
             <%if(food.description.length >300) {%> <%=
             food.description.substring(0, 300) + " ..." %><a
+              class="link-secondary link-offset-2 link-opacity-75 link-underline-opacity-50 link-underline-opacity-75-hover"
               href="/foods/<%=food._id%>"
               >Read More</a
             >
