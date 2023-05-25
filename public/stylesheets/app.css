@@ -94,5 +94,16 @@ body {
   .alert{
     margin-top:1em;
   }
+
+  .loginForm{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .loginForm p{
+    margin: 0;
+  }
   
 
