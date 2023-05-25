@@ -25,10 +25,8 @@
         <div>
           <h3 class="float-md-start mb-0">FoodMap</h3>
           <nav class="nav nav-masthead justify-content-center float-md-end">
-            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
-            <!-- <a class="nav-link" href="/foods">Foods</a> -->
             <% if(!currentUser) { %>
-            <a class="nav-link" href="/login">Log in</a>
+            <a class="nav-link ms-0" href="/login">Log in</a>
             <a class="nav-link" href="/register">Sign up</a>
             <% } else { %>
 
@@ -43,14 +41,12 @@
       <main class="px-3">
         <h1>FoodMap</h1>
         <p class="lead">
-          Welcome to FoodMap! <br />
-          Join us in exploring the most renowned dishes around the world.<br />Feel
-          free to share your hometown favorites and recommend top-notch
-          restaurants!
+          Discover iconic foods worldwide with FoodMap!<br />Share your hometown
+          favorites and recommend top-notch restaurants!
         </p>
         <a
           href="/foods"
-          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white"
+          class="btn btn-lg btn-secondary fw-bold border-white bg-white"
           >View Global Iconic Food</a
         >
       </main>
