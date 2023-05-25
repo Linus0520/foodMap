@@ -67,7 +67,7 @@
       <div id="map"></div>
     </div>
     <% if(food.reviews.length>0){ %>
-    <div class="p-3 mt-3 mb-3 bg-body-tertiary border-0 rounded-0 shadow">
+    <div class="p-3 mt-3 mb-0 bg-body-tertiary border-0 rounded-0 shadow">
 
       <h4 class="mb-3">Restaurant recommendations</h4>
  
@@ -116,7 +116,7 @@
                 name="review[body]"
                 id="body"
                 cols="30"
-                rows="5"
+                rows="2"
                 required
               ></textarea>
             </div>
@@ -126,10 +126,10 @@
       </div>
     </div>
     <% }else{%>
-      <div class="p-3  mt-3 bg-body-tertiary border-0 rounded-0 text-center shadow">
+      <div class="p-3 bg-success border-0 rounded-0 text-center shadow">
         
-        <p class="list-group-item text-muted"> Recomment your go-to restaurant for this iconic food!</p>
-        <a href="/login" class="btn btn-primary px-5 " type="button"> Log in </a>
+        <p class="list-group-item text-white"> Recomment your go-to restaurant for this iconic food!</p>
+        <a href="/login" class="btn btn-outline-light px-5 " type="button"> Log in </a>
       </div>
 
     </div>
