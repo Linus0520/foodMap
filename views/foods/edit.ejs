@@ -19,9 +19,6 @@
           value="<%=food.title %>"
           required
         />
-        <!-- <div class="valid-feedback">
-                    Looks good!
-                </div> -->
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Place of origin</label>
@@ -33,9 +30,6 @@
           value="<%=food.location %>"
           required
         />
-        <!-- <div class="valid-feedback">
-                    Looks good!
-                </div> -->
       </div>
 
       <div class="mb-3">
@@ -71,9 +65,6 @@
         >
 <%= food.description%></textarea
         >
-        <!-- <div class="valid-feedback">
-                    Looks good!
-                </div> -->
       </div>
       <div class="mb-3">
         <div class="input-group mb-3">
@@ -107,7 +98,7 @@
         <a class="col-3 btn btn-secondary" href="/foods/<%= food._id%>">
           Back
         </a>
-        <button class="col-3 btn btn-success">Update</button>
+        <button class="col-3 btn btn-success btn-disabled">Update</button>
       </div>
     </form>
   </div>

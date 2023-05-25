@@ -41,11 +41,11 @@
           >Edit</a
         >
         <form
-          class="d-inline"
+          class="d-inline validated-form"
           action="/foods/<%=food._id%>?_method=DELETE"
           method="POST"
         >
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-danger btn-disabled">Delete</button>
         </form>
       </div>
       <% } %>
@@ -75,9 +75,9 @@
           <% if( currentUser && review.author.equals(currentUser._id)) {%>
           <form
             action="/foods/<%=food._id%>/reviews/<%=review._id%>?_method=DELETE"
-            method="POST"
+            method="POST" class="validated-form"
           >
-            <button class="btn btn-sm btn-danger">Delete</button>
+            <button class="btn btn-sm btn-danger btn-disabled" type="submit">Delete</button>
           </form>
           <% } %>
         </div>
@@ -115,7 +115,11 @@
                 required
               ></textarea>
             </div>
-            <button class="btn btn-success">Submit</button>
+
+              <button class="btn btn-success btn-disabled">Submit</button>
+
+           </button>
+           
           </form>
         </div>
       </div>
