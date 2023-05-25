@@ -41,7 +41,7 @@ module.exports.showFood = async (req, res,) => {
         req.flash('error', 'Cannot find that iconic food');
         return res.redirect('/foods');
     }
-    res.render('foods/show', { food });
+    res.render('foods/show', { food }); 
 }
 
 module.exports.renderEditForm = async (req, res) => {

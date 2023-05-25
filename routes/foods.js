@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const foods = require('../controllers/foods');
 const catchAsync = require('../utils/catchAsync');
-const { isLoggedIn, isAuthor, validateFood } = require('../middleware');
+const { isLoggedIn, isAuthor, validateFood, checkUrl } = require('../middleware');
 const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
@@ -17,7 +17,7 @@ router.route('/')
 router.get('/new', isLoggedIn, foods.renderNewForm)
 
 router.route('/:id')
-    .get(catchAsync(foods.showFood))
+    .get(checkUrl, catchAsync(foods.showFood))
     .put(isLoggedIn, isAuthor, upload.array('image'), validateFood, catchAsync(foods.updateFood))
     .delete(isLoggedIn, isAuthor, catchAsync(foods.deleteFood));
 

@@ -3,13 +3,6 @@ const ExpressError = require('./utils/ExpressError');
 const Food = require('./models/food');
 const Review = require('./models/review');
 
-module.exports.storeReturnTo = (req, res, next) => {
-    if (req.session.returnTo) {
-        res.locals.returnTo = req.session.returnTo;
-    }
-    next();
-}
-
 module.exports.isLoggedIn = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.session.returnTo = req.originalUrl
@@ -18,6 +11,15 @@ module.exports.isLoggedIn = (req, res, next) => {
     }
     next();
 }
+
+module.exports.checkUrl = (req, res, next) => {
+    if (!req.isAuthenticated()) {
+        req.session.returnTo=req.originalUrl
+    }
+    next();
+}
+
+
 
 module.exports.validateFood = (req, res, next) => {
     const { error } = foodSchema.validate(req.body);
