@@ -26,7 +26,7 @@ module.exports.createFood = async (req, res, next) => {
     food.author = req.user._id;
     await food.save();
     console.log(food);
-    req.flash('success', 'Successfully made a new iconic food!');
+    req.flash('success', 'Successfully added a new iconic food!');
     res.redirect(`/foods/${food._id}`)
 }
 
@@ -56,8 +56,12 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateFood = async (req, res) => {
     const { id } = req.params;
-    console.log(req.body);
+    const geoData = await geocoder.forwardGeocode({
+        query: req.body.food.location,
+        limit: 10,
+    }).send()
     const food = await Food.findByIdAndUpdate(id, { ...req.body.food });
+    food.geometry = geoData.body.features[randomNum].geometry;
     const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
     food.images.push(...imgs);
     if(req.body.deleteImages && food.images.length - req.body.deleteImages.length <1){
