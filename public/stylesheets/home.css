@@ -9,6 +9,7 @@ body {
 }
 .cover-container {
   max-width: 90vw;
+  height:100vh;
 }
 
 .nav-link {
